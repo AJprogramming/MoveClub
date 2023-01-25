@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="{{ url_for('static', filename='bio.css') }}"
+    />
+    <title>MovieClub</title>
+  </head>
+  <body>
+    <div id="container">
+      <div class="d-flex justify-content-between">
+        <div class="title mt-2">
+          <h1>Welcome, {{user.username}}!</h1>
+        </div>
+        <div class="mt-2 link">
+          <a href="/logout">logout</a>
+        </div>
+      </div>
+      <div>
+        <div class="d-flex justify-content-center move">
+          <h3>Enter Bio</h3>
+        </div>
+        <br />
+        <div class="d-flex justify-content-center">
+          {% with messages = get_flashed_messages(category_filter=["bio"]) %} {%
+          if messages %} {% for message in messages %}
+          <p>{{message}}</p>
+          {% endfor %} {% endif %} {% endwith %}
+        </div>
+        <div class="form-floating d-flex justify-content-center">
+          <form action="/create_bio" method="POST">
+            <textarea
+              class="form-control"
+              id="floatingTextarea2"
+              style="height: 125px"
+              row="50"
+              cols="50"
+              name="bio"
+              minlength="3"
+              maxlength="150"
+              placeholder="Please tell us a bit about yourself"
+            ></textarea
+            ><br />
+            <input type="submit" value="Done" />
+          </form>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

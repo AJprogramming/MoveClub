@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="{{ url_for('static', filename='login.css') }}"
+    />
+    <title>MovieClub</title>
+  </head>
+  <body>
+    <div id="container">
+      <div class="d-flex justify-content-between">
+        <div class="title mt-2">
+          <h1>Movie Club</h1>
+        </div>
+        <div class="mt-2 link">
+          <a href="/register">Go To Register Page</a>
+        </div>
+      </div>
+      <div
+        class="row gx-4 justify-content-evenly d-flex justify-content-center mt-5"
+      >
+        <div class="col-4 text-bg-secondary rounded h-50 pb-2">
+          <form action="/logging_in" method="POST">
+            <h1 class="text-center text-info" style="--bs-text-opacity: 0.85">
+              Login
+            </h1>
+            {% with messages = get_flashed_messages(category_filter=["log"]) %}
+            {% if messages %} {% for message in messages %}
+            <p>{{message}}</p>
+            {% endfor %} {% endif %} {% endwith %}
+            <div class="input-group mb-3">
+              <label for="email" class="input-group-text">Email</label>
+              <input
+                name="email"
+                type="text"
+                class="form-control"
+                aria-label="Sizing example input"
+                aria-describedby="inputGroup-sizing-default"
+              />
+            </div>
+            <div class="input-group mb-3">
+              <label for="password" class="input-group-text">Password</label>
+              <input
+                name="password"
+                type="password"
+                class="form-control"
+                aria-label="Sizing example input"
+                aria-describedby="inputGroup-sizing-default"
+              />
+            </div>
+            <input class="btn btn-primary" type="submit" value="Submit" />
+          </form>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="{{ url_for('static', filename='createaccount.css') }}"
+    />
+    <title>MovieClub</title>
+  </head>
+  <body>
+    <div id="container">
+      <div class="d-flex justify-content-between">
+        <div class="title mt-2">
+          <h1>Movie Club</h1>
+        </div>
+        <div class="mt-2 link">
+          <a href="/login">Go To Login Page</a>
+        </div>
+      </div>
+    <div class="row gx-4 justify-content-evenly d-flex justify-content-center mt-5">
+      <div class="col-4 text-bg-secondary rounded pb-2">
+        <form action="/registering" method="POST">
+          <h1 class="text-center text-info" style="--bs-text-opacity: 0.85">
+            Register
+          </h1>
+          {% with messages = get_flashed_messages(category_filter=["reg"]) %} {%
+          if messages %} {% for message in messages %}
+          <p>{{message}}</p>
+          {% endfor %} {% endif %} {% endwith %}
+          <div class="input-group mb-3">
+            <label for="first_name" class="input-group-text">First Name</label>
+            <input
+              name="first_name"
+              type="text"
+              class="form-control"
+              aria-label="Sizing example input"
+              aria-describedby="inputGroup-sizing-default"
+              value="{{session['first_name']}}"
+            />
+          </div>
+          <div class="input-group mb-3">
+            <label for="last_name" class="input-group-text">Last Name</label>
+            <input
+              name="last_name"
+              type="text"
+              class="form-control"
+              aria-label="Sizing example input"
+              aria-describedby="inputGroup-sizing-default"
+              value="{{session['last_name']}}"
+            />
+          </div>
+          <div class="input-group mb-3">
+            <label for="username" class="input-group-text">Username</label>
+            <input
+              name="username"
+              type="text"
+              class="form-control"
+              aria-label="Sizing example input"
+              aria-describedby="inputGroup-sizing-default"
+              value="{{session['username']}}"
+            />
+          </div>
+          <div class="input-group mb-3">
+            <label for="email" class="input-group-text">Email</label>
+            <input
+              name="email"
+              type="text"
+              class="form-control"
+              aria-label="Sizing example input"
+              aria-describedby="inputGroup-sizing-default"
+              value="{{session['email']}}"
+            />
+          </div>
+          <div class="input-group mb-3">
+            <label for="password" class="input-group-text">Password</label>
+            <input
+              name="password"
+              type="password"
+              class="form-control"
+              aria-label="Sizing example input"
+              aria-describedby="inputGroup-sizing-default"
+            />
+          </div>
+          <div class="input-group mb-3">
+            <label for="check_password" class="input-group-text"
+              >Confirm Password</label
+            >
+            <input
+              name="check_password"
+              type="password"
+              class="form-control"
+              aria-label="Sizing example input"
+              aria-describedby="inputGroup-sizing-default"
+            />
+          </div>
+          <div class="form-check">
+            <input
+              class="form-check-input"
+              type="checkbox"
+              value="agreed"
+              checked
+              required
+            />
+            <label class="form-check-label">
+              I agree to terms and sevice
+            </label>
+          </div>
+          <input class="btn btn-primary" type="submit" value="Submit" />
+        </form>
+      </div>
+    </div>
+  </body>
+</html>

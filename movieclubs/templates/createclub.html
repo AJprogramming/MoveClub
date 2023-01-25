@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="{{ url_for('static', filename='createclub.css') }}"
+    />
+    <title>MovieClub</title>
+  </head>
+  <body>
+    <div id="container">
+      <div class="d-flex justify-content-around">
+        <div>
+          <a href="/home/{{user.id}}">Home Page</a>
+        </div>
+        <div>
+          <a href="/logout">Logout</a>
+        </div>
+      </div>
+      <div>
+        <form action="creating_club" method="POST">
+          <div class="move">
+            <div>
+              {% with messages = get_flashed_messages(category_filter=["name"])
+              %} {% if messages %} {% for message in messages %}
+              <p>{{message}}</p>
+              {% endfor %} {% endif %} {% endwith %}
+              <h3>Movie's Name</h3>
+              <input name="name" type="text" />
+            </div>
+            <br />
+            <div class="form-floating">
+              {% with messages = get_flashed_messages(category_filter=["des"])
+              %} {% if messages %} {% for message in messages %}
+              <p>{{message}}</p>
+              {% endfor %} {% endif %} {% endwith %}
+              <h3>Description</h3>
+              <div class="box">
+                <textarea
+                  class="form-control w-50"
+                  placeholder="Leave a comment here"
+                  id="floatingTextarea2"
+                  style="height: 100px"
+                  name="description"
+                ></textarea>
+              </div>
+            </div>
+          </div>
+          <div class="d-flex justify-content-center mt-4">
+            <div>
+              <div>
+                <h3>Choose ONE category that best describes the movie</h3>
+              </div>
+              {% with messages = get_flashed_messages(category_filter=["gen"])
+              %} {% if messages %} {% for message in messages %}
+              <p>{{message}}</p>
+              {% endfor %} {% endif %} {% endwith %}
+              <input type="checkbox" name="genres" value="Action" />
+              <label>Action</label><br />
+              <input type="checkbox" name="genres" value="Comedy" />
+              <label>Comedy</label><br />
+              <input type="checkbox" name="genres" value="Western" />
+              <label>Western</label><br />
+              <input type="checkbox" name="genres" value="Horror" />
+              <label>Horror</label><br />
+              <input type="checkbox" name="genres" value="Sci-Fi" />
+              <label>Sci-Fi</label><br />
+              <input type="checkbox" name="genres" value="History" />
+              <label>History</label><br />
+              <input type="checkbox" name="genres" value="Rom-Com" />
+              <label>Rom-Com</label><br />
+              <input type="submit" value="Done" />
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </body>
+</html>

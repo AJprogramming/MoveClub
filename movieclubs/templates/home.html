@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="{{ url_for('static', filename='home.css') }}"
+    />
+    <title>MovieClub</title>
+  </head>
+  <body>
+    <div id="container">
+      <div class="d-flex justify-content-around">
+        <div>
+          <a href="/logout">logout</a>
+        </div>
+        <div>
+          <a href="/create_club">Create Club</a>
+        </div>
+        <div>
+          <a href="/findclubs">Find Club</a>
+        </div>
+      </div>
+      <div class="mt-4 d-flex justify-content-center">
+        <h1>{{user.username}}'s Page</h1>
+      </div>
+      <div class="row align-items-center grid main">
+        <div class="col">
+          <div class="card" style="width: 18rem">
+            <div class="card-header">
+              <h3>Favorite genres</h3>
+            </div>
+            <ul class="list-group list-group-flush">
+              <li class="list-group-item">{{user.fav_genre1}}</li>
+              <li class="list-group-item">{{user.fav_genre2}}</li>
+              <li class="list-group-item">{{user.fav_genre3}}</li>
+            </ul>
+          </div>
+          <p><a href="/edit/genres">Edit Genres</a></p>
+        </div>
+        <div class="col">
+          <div class="card" style="width: 18rem">
+            <div class="card-header">
+              <h3>Joined Clubs</h3>
+            </div>
+            <ul class="list-group list-group-flush">
+              {% for join in joined.joined_clubs %}
+              <li class="list-group-item">
+                <a href="/clubpage/{{join.id}}">{{join.name}}</a>
+              </li>
+              {% endfor %}
+            </ul>
+          </div>
+        </div>
+        <div class="col">
+          <div class="card" style="width: 18rem">
+            <div class="card-body">
+              <h5 class="card-title">Bio</h5>
+              <p class="card-text">{{user.bio}}</p>
+            </div>
+          </div>
+          <p><a href="/editbio">Edit Bio</a></p>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

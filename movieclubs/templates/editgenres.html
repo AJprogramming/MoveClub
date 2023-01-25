@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="{{ url_for('static', filename='genres.css') }}"
+    />
+    <title>MovieClub</title>
+  </head>
+  <body>
+    <div id="container">
+      <div class="d-flex justify-content-between">
+        <div class="title mt-2">
+          <h1>You Can Change Your Favorite Genre's Here, {{user.username}}!</h1>
+        </div>
+        <div class="mt-2 link" class="mt-2 link">
+          <a href="/logout">logout</a>
+        </div>
+      </div>
+      <div>
+        <div class="d-flex justify-content-center mt-5">
+          <h2>Pick top 3 favorite movie genres</h2>
+        </div>
+        <div class="d-flex justify-content-center">
+          {% with messages = get_flashed_messages(category_filter=["gen"]) %} {%
+          if messages %} {% for message in messages %}
+          <p>{{message}}</p>
+          {% endfor %} {% endif %} {% endwith %}
+        </div>
+        <div class="d-flex justify-content-center mt-3">
+          <form action="/edit_genres" method="POST">
+            <input type="checkbox" name="genres" value="Action" />
+            <label>Action</label><br />
+            <input type="checkbox" name="genres" value="Comedy" />
+            <label>Comedy</label><br />
+            <input type="checkbox" name="genres" value="Western" />
+            <label>Western</label><br />
+            <input type="checkbox" name="genres" value="Horror" />
+            <label>Horror</label><br />
+            <input type="checkbox" name="genres" value="Sci-Fi" />
+            <label>Sci-Fi</label><br />
+            <input type="checkbox" name="genres" value="History" />
+            <label>History</label><br />
+            <input type="checkbox" name="genres" value="Rom-Com" />
+            <label>Rom-Com</label><br />
+            <input type="submit" value="Done" />
+          </form>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

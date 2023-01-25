@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="{{ url_for('static', filename='clubpage.css') }}"
+    />
+    <title>MovieClub</title>
+  </head>
+  <body>
+    <div id="container">
+      <div class="d-flex justify-content-around">
+        <div>
+          <a href="/home/{{session['users_id']}}">Home</a>
+        </div>
+        <div>
+          <a href="/findclubs">See all clubs</a>
+        </div>
+        {% for userclub in usersclubs %} {% if userclub.clubber.id ==
+        session['users_id']%}
+        <div>
+          <a href="/editclub/{{club.id}}">Edit Club</a>
+        </div>
+        <div>
+          <a href="/deleteclub/{{club.id}}">Delete Club</a>
+        </div>
+        {% else %}
+        {% if notjoined.clubs_id != club.id %}
+        <div>
+          <a href="/join/{{club.id}}"> join club</a>
+        </div>
+        {% else %}
+        <div>
+          <a href="/unjoin/{{club.id}}">leave club</a>
+        </div>
+        {% endif %}
+        {% endif %} {% endfor %}
+        <div>
+          <a href="/logout">logout</a>
+        </div>
+      </div>
+      <div class="d-flex justify-content-center">
+        <h1>{{club.name}} club</h1>
+      </div>
+      <div class="d-flex justify-content-center">
+        <h2>Genre: {{club.genre}}</h2>
+      </div>
+      <div class="d-flex justify-content-center">
+        <h2>Description: {{club.description}}</h2>
+      </div>
+      <div class="d-flex justify-content-center mt-5 form-floating">
+        <form action="/posting" method="POST">
+          <textarea class="form-control long" placeholder="Leave a comment here" id="floatingTextarea2" style="height: 100px" name="content" placeholder="Add Post"></textarea>
+          <input type="hidden" name="users_id" value="{{user.id}}" />
+          <input type="hidden" name="clubs_id" value="{{club.id}}" />
+          <div class="d-flex justify-content-end mt-2">
+          <input type="submit" value="Post" />
+          </div>
+        </form>
+        </div>
+        <hr />
+      </div>
+      {% for post in posts %}
+      <div>
+      <div class="scoot">
+        <h4>{{post.content}}</h4>
+        <br />
+        <h6>By: {{post.poster.username}} | {{post.created_at}}</h6>
+        {% if post.poster.id == session['users_id'] %}
+        <a href="/deletepost/{{post.id}}/{{club.id}}">Delete</a>
+        {% endif %}
+      </div>
+        <hr />
+        {% endfor %}
+      </div>
+    </div>
+  </body>
+</html>
