@@ -64,6 +64,28 @@ class Club:
         return clubs
     
     @classmethod
+    def get_users_club_list(cls, data):
+        query = """SELECT * FROM clubs JOIN users ON clubs.users_id = users.id
+                    WHERE clubs.users_id = %(id)s;"""
+        results = connectToMySQL('movieclub').query_db(query, data)
+        clubs = []
+        for club in results:
+            one_club = cls(club)
+            user = {"id" : club["users.id"],
+                    'first_name': club['first_name'],
+                    'last_name' : club['last_name'],
+                    'email': club['email'],
+                    'username' : club['username'],
+                    'fav_genre1' : club['fav_genre1'],
+                    'fav_genre2' : club['fav_genre2'],
+                    'fav_genre3' : club['fav_genre3'],
+                    'bio' : club['bio'],
+                    'password' : None}
+            one_club.clubber = users_model.User(user)
+            clubs.append( one_club )
+        return clubs
+    
+    @classmethod
     def get_users_club(cls, data):
         query = """SELECT * FROM clubs JOIN users ON clubs.users_id = users.id
                     WHERE clubs.id = %(id)s;"""

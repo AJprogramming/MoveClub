@@ -11,3 +11,9 @@
 .grid {
   margin-left: 15%;
 }
+
+.bio-content {
+  padding-left: 1em;
+  padding-right: 0.5em;
+  padding-bottom: 0.1em;
+}

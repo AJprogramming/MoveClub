@@ -57,9 +57,25 @@
         </div>
         <div class="col">
           <div class="card" style="width: 18rem">
-            <div class="card-body">
-              <h5 class="card-title">Bio</h5>
-              <p class="card-text">{{user.bio}}</p>
+            <div class="card-header">
+              <h3>Created Clubs</h3>
+            </div>
+            <ul class="list-group list-group-flush">
+              {% for create in created %}
+              <li class="list-group-item">
+                <a href="/clubpage/{{create.id}}">{{create.name}}</a>
+              </li>
+              {% endfor %}
+            </ul>
+          </div>
+        </div>
+        <div class="col">
+          <div class="card" style="width: 18rem">
+            <div class="card-header">
+              <h3>Bio</h3>
+            </div>
+            <div>
+              <p class="card-text bio-content">{{user.bio}}</p>
             </div>
           </div>
           <p><a href="/editbio">Edit Bio</a></p>
