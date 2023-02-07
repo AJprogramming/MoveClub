@@ -65,16 +65,18 @@
         <hr />
       </div>
       {% for post in posts %}
+      {% for userclub in usersclubs %}
       <div>
       <div class="scoot">
         <h4>{{post.content}}</h4>
         <br />
         <h6>By: {{post.poster.username}} | {{post.created_at}}</h6>
-        {% if post.poster.id == session['users_id'] %}
+        {% if post.poster.id == session['users_id'] or userclub.clubber.id == session['users_id'] %}
         <a href="/deletepost/{{post.id}}/{{club.id}}">Delete</a>
         {% endif %}
       </div>
         <hr />
+        {% endfor %}
         {% endfor %}
       </div>
     </div>
