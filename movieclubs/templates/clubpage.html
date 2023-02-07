@@ -31,16 +31,16 @@
         {% else %}
         {% if notjoined.clubs_id != club.id %}
         <div>
-          <a href="/join/{{club.id}}"> join club</a>
+          <a href="/join/{{club.id}}">Join club</a>
         </div>
         {% else %}
         <div>
-          <a href="/unjoin/{{club.id}}">leave club</a>
+          <a href="/unjoin/{{club.id}}">Leave club</a>
         </div>
         {% endif %}
         {% endif %} {% endfor %}
         <div>
-          <a href="/logout">logout</a>
+          <a href="/logout">Logout</a>
         </div>
       </div>
       <div class="d-flex justify-content-center">
