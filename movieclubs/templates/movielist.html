@@ -22,10 +22,8 @@
       <tbody>
         {% for movie in allmovies %}
         <tr>
-          {{movie.title}}
-        </tr>
-        <tr>
-          {{movie.releaseyear}}
+          <td>{{movie.title}}</td>
+          <td>{{movie.releaseyear}}</td>
         </tr>
         {% endfor %}
       </tbody>
