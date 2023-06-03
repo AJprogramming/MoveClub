@@ -1,4 +1,4 @@
-movieclubs/conf
+movieclubs/conf/mysqlconnection.py
 movieclubs/sec.py
 movieclubs/static/bootstrap.css
 movieclubs/scraped_movies/config.py
