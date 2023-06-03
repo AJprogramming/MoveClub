@@ -1,5 +1,5 @@
 movieclubs/conf
-movieclubs/__init__.py
+movieclubs/sec.py
 movieclubs/static/bootstrap.css
 movieclubs/scraped_movies/config.py
 
