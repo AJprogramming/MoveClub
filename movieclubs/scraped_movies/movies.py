@@ -1,5 +1,5 @@
 from selenium import webdriver
-from config import connect, driver_path
+from movieclubs.scraped_movies.config import connect, driver_path
 import pandas as pd
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait

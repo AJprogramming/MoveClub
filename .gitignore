@@ -1,7 +1,7 @@
 movieclubs/conf
 movieclubs/__init__.py
 movieclubs/static/bootstrap.css
-scraped_movies/config.py
+movieclubs/scraped_movies/config.py
 
 # Created by https://www.toptal.com/developers/gitignore/api/python
 # Edit at https://www.toptal.com/developers/gitignore?templates=python
